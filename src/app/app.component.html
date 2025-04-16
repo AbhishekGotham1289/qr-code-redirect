@@ -1,0 +1,13 @@
+<div class="container">
+  <div id="platform-dialog" class="dialog">
+    <div class="dialog-content">
+      <h2>Access on Mobile</h2>
+      <p>Please open this link on a mobile device or choose an option below:</p>
+      <div class="button-group">
+        <button (click)="redirectToLink(appleStoreLink)">App Store</button>
+        <button (click)="redirectToLink(googlePlayLink)">Google Play</button>
+        <button (click)="closeDialog()">Visit Website</button>
+      </div>
+    </div>
+  </div>
+</div>
