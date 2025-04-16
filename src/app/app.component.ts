@@ -22,9 +22,9 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  googlePlayLink = 'https://play.google.com/store/apps/details?id=your.app.id'; // Replace with actual Google Play link
-  appleStoreLink = 'https://www.apple.com/app-store/'; // Replace with actual App Store link
-  webLink = 'https://yourwebsite.com'; // Replace with fallback website link
+  googlePlayLink = "https://play.google.com/store/apps/details?id=com.KTERN.KTERN_mobileapplication&pcampaignid=web_share"; // Replace with actual Google Play link
+  appleStoreLink = "https://apps.apple.com/in/app/ktern-ai/id6673897527"; // Replace with actual App Store link
+  webLink = "https://demo.ktern.com/#/auth/login"; // Replace with fallback website link
 
   ngOnInit() {
     this.redirectBasedOnDevice();
@@ -60,11 +60,13 @@ export class AppComponent implements OnInit {
     if (dialog) {
       dialog.style.display = 'none';
       document.body.classList.remove('no-scroll');
-      window.location.href = this.webLink;
+      // window.location.href = this.webLink;
+      window.open(this.webLink, '_blank'); // Open website in new tab
     }
   }
 
   redirectToLink(link: string): void {
-    window.location.href = link;
+    // window.location.href = link;
+    window.open(link, '_blank'); // Open link in new tab
   }
 }
