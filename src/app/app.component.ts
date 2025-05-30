@@ -114,21 +114,24 @@ export class AppComponent implements OnInit {
   }
   redirectBasedOnDevice(): void {
     const userAgent = navigator.userAgent || navigator.vendor;
-
-    // Check if the device is iOS
-    if (/iPad|iPhone|iPod/.test(userAgent)) {
-      window.location.href = this.appleStoreLink;
+ 
+    // Check if the device is iOS using a more comprehensive check
+    if (/iPad|iPhone|iPod/.test(userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+      window.open(this.appleStoreLink, '_self');
+      return;
     }
     // Check if the device is Android
     else if (/android/i.test(userAgent)) {
-      window.location.href = this.googlePlayLink;
+      window.open(this.googlePlayLink, '_self');
+      return;
     }
     // Handle desktop or unsupported devices
     else {
       this.openDialog();
     }
   }
-
+ 
   openDialog(): void {
     const dialog = document.getElementById('platform-dialog');
     if (dialog) {
@@ -136,13 +139,12 @@ export class AppComponent implements OnInit {
       document.body.classList.add('no-scroll');
     }
   }
-
+ 
   closeDialog(): void {
     const dialog = document.getElementById('platform-dialog');
     if (dialog) {
       dialog.style.display = 'none';
       document.body.classList.remove('no-scroll');
-      // window.location.href = this.webLink;
       window.open(this.webLink, '_blank'); // Open website in new tab
     }
   }
